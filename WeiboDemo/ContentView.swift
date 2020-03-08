@@ -5,6 +5,7 @@
 //  Created by ragezor on 2020/3/4.
 //  Copyright © 2020 ragezor. All rights reserved.
 //
+// ：表示类型 ContentView是View
 
 import SwiftUI
 
