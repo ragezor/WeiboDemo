@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import WeiboDemo
+
 
 class WeiboDemoTests: XCTestCase {
 

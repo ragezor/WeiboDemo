@@ -85,7 +85,7 @@ struct  PostImageCellRow:  View {
 struct PostImageCell_Previews: PreviewProvider {
     static var previews: some View {
         //声明了局部变量就要返回返回值
-        let images=postList.list[0].images
+        let images = UserData().recommendPostList.list[0].images
         let width=UIScreen.main.bounds.width
         //[a...b] 取数组片段
         return Group{

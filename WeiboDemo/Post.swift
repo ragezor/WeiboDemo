@@ -50,7 +50,7 @@ extension Post{
     
 }
 //全局变量
-let postList = loadPostListData(fileName: "PostListData_recommend_1.json")
+//let postList = loadPostListData(fileName: "PostListData_recommend_1.json")
 //解析 通过文件名得到url 通过url得到data 通过data得到Json
 func loadPostListData(fileName:String) ->PostList{
     //Bundle 文件夹 guard保证能执行xxxx否则报错

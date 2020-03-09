@@ -8,7 +8,7 @@
 // ：表示类型 ContentView是View
 
 import SwiftUI
-
+//整个app启动是在contentview
 struct ContentView: View {
     var body: some View {
         Text("Hello, World!")

@@ -10,7 +10,8 @@ import SwiftUI
 private let kLableWidth : CGFloat=60
 private let kButtonHeight : CGFloat=24
 struct HomeNavigationBar: View {
-  @State  var leftPercent: CGFloat//0时下划线在左 1时下划线在右 @state加上后表示这个属性是一个状态 改变后view就更新
+//  @State  var leftPercent: CGFloat0时下划线在左 1时下划线在右 @state加上后表示这个属性是一个状态 改变后view就更新
+    @Binding var leftPercent : CGFloat
     var body: some View {
         HStack(alignment : .top ,spacing: 0)
         {
@@ -90,6 +91,6 @@ struct HomeNavigationBar: View {
 
 struct HomeNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        HomeNavigationBar(leftPercent: 0)
+        HomeNavigationBar(leftPercent: .constant(0))
     }
 }

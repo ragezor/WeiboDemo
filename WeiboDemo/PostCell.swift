@@ -10,11 +10,16 @@ import SwiftUI
 
 struct PostCell: View {
     let post:Post
+    var bindingPost : Post{
+        userData.post(forId: post.id)!
+    }
     
+    @State var presentComment : Bool = false
+    @EnvironmentObject var userData :UserData
     var body: some View {
+        var post = bindingPost
         
-        
-        VStack(alignment: .leading ,spacing:  10){
+       return VStack(alignment: .leading ,spacing:  10){
             
 
                     
@@ -56,7 +61,9 @@ struct PostCell: View {
                                         Button(action: {
                             //                打印在控制台，live preivew是没有的 右键debug才会输出
                                         
-                                            print("click follow button")
+//                                            print("click follow button")
+                                            post.isFollowed = true
+                                            self.userData.update(post)
                                                               
                                                            }) {
                                                                Text("关注")
@@ -88,12 +95,23 @@ struct PostCell: View {
                 
                 PostCellToolbarButton(image :"message", text: post.commentCountText, color: .black )
                 {
-                    print("click comment button")
+                    self.presentComment = true
+                }
+                .sheet(isPresented: $presentComment){
+                    CommentInputView(post: post).environmentObject(self.userData)
                 }
                 Spacer()
-                PostCellToolbarButton(image :"heart", text: post.likeCountText, color: .black )
+                PostCellToolbarButton(image : post.isLiked ? "heart.fill" : "heart", text: post.likeCountText, color: post.isLiked ? .red : .black )
                                {
-                                   print("click like button")
+//                                   print("click like button")
+                                if post.isLiked{
+                                    post.isLiked = false
+                                    post.likeCount -= 1
+                                }else{
+                                    post.isLiked=true
+                                    post.likeCount += 1
+                                }
+                                self.userData.update(post)
                                }
                 Spacer()
             }
@@ -117,6 +135,7 @@ struct PostCell: View {
 struct PostCell_Previews: PreviewProvider {
     static var previews: some View {
         //快捷键 control+command+点击就可以d跳转定义 postlist的list变量
-        PostCell(post:postList.list[0])
+        let userData = UserData()
+        return PostCell(post: userData.recommendPostList.list[0]).environmentObject(userData)
     }
 }
